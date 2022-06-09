@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -10,10 +11,15 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "7000"
+	}
+
 	http.HandleFunc("/", index)
 
 	server := &http.Server{
-		Addr:    ":7000",
+		Addr:    fmt.Sprintf(":%v", port),
 		Handler: http.DefaultServeMux,
 	}
 
