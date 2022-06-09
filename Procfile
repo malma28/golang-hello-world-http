@@ -1,1 +1,1 @@
-web: hello-world-http
+web: .bin/hello-world-http
