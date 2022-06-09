@@ -7,7 +7,12 @@ import (
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello World")
+	name := r.URL.Query().Get("name")
+	if name == "" {
+		fmt.Fprint(w, "Hello User!")
+		return
+	}
+	fmt.Fprintf(w, "Hello %v!", name)
 }
 
 func main() {
